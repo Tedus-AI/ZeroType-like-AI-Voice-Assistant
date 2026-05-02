@@ -1,24 +1,15 @@
-import { useState } from 'react';
-import HomePage from './pages/HomePage';
-import SettingsPage from './pages/SettingsPage';
-import HistoryPage from './pages/HistoryPage';
-
-export default function App() {
-  const [page, setPage] = useState<'home' | 'settings' | 'history'>('home');
-
+const App = (): JSX.Element => {
   return (
-    <main>
-      <header>
-        <h1>AI Voice Assistant</h1>
-        <nav>
-          <button onClick={() => setPage('home')}>Home</button>
-          <button onClick={() => setPage('settings')}>Settings</button>
-          <button onClick={() => setPage('history')}>History</button>
-        </nav>
-      </header>
-      {page === 'home' && <HomePage />}
-      {page === 'settings' && <SettingsPage />}
-      {page === 'history' && <HistoryPage />}
+    <main className="container">
+      <h1>AI Voice Assistant</h1>
+      <p className="status">Ready</p>
+      <div className="actions">
+        <button type="button">Start Recording</button>
+        <button type="button">Settings</button>
+      </div>
+      <section className="result-box" aria-label="Transcription Result" />
     </main>
   );
-}
+};
+
+export default App;

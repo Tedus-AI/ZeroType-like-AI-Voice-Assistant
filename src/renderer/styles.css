@@ -1,0 +1,33 @@
+:root {
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  color: #111827;
+  background: #f9fafb;
+}
+
+body {
+  margin: 0;
+}
+
+.container {
+  max-width: 720px;
+  margin: 40px auto;
+  padding: 24px;
+}
+
+.status {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.result-box {
+  min-height: 180px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background: #fff;
+}

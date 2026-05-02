@@ -1,12 +1,10 @@
 import { app, BrowserWindow } from 'electron';
 import path from 'node:path';
 
-const isDev = !app.isPackaged;
-
-const createWindow = () => {
+const createWindow = (): void => {
   const mainWindow = new BrowserWindow({
-    width: 1100,
-    height: 760,
+    width: 1000,
+    height: 700,
     webPreferences: {
       preload: path.join(__dirname, '../preload/preload.js'),
       contextIsolation: true,
@@ -14,20 +12,28 @@ const createWindow = () => {
     }
   });
 
-  if (isDev) {
-    void mainWindow.loadURL('http://localhost:5173');
-  } else {
-    void mainWindow.loadFile(path.join(__dirname, '../../dist/index.html'));
+  const devServerUrl = process.env.VITE_DEV_SERVER_URL ?? 'http://localhost:5173';
+
+  if (!app.isPackaged) {
+    mainWindow.loadURL(devServerUrl).catch(console.error);
+    return;
   }
+
+  mainWindow.loadFile(path.join(__dirname, '../../dist/index.html')).catch(console.error);
 };
 
 app.whenReady().then(() => {
   createWindow();
+
   app.on('activate', () => {
-    if (BrowserWindow.getAllWindows().length === 0) createWindow();
+    if (BrowserWindow.getAllWindows().length === 0) {
+      createWindow();
+    }
   });
 });
 
 app.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') app.quit();
+  if (process.platform !== 'darwin') {
+    app.quit();
+  }
 });
