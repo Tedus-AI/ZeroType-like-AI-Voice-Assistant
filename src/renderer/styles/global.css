@@ -1,0 +1,22 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+main {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+section {
+  margin-top: 16px;
+}
+
+textarea {
+  width: 100%;
+}
+
+button {
+  margin-right: 8px;
+}
